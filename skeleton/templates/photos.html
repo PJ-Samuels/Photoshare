@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <div>
+        <h1>Album Page</h1>
+    </div>
+
+    {%if album_name %}
+        <div>
+            <h2>{{album_name}}</h2>
+        </div>
+    {% endif %}
+
+    {% if photos %}
+        <ul>
+            {% for photo in photos %}
+            <div class="photo">
+                <img src="data:image/jpeg;base64,{{ photo['image_data'] }}" alt="{{ photo['caption'] }}">
+                <div class="caption">{{ photo['caption'] }}</div>
+            </div>
+            <div>
+                <a href = "/addTags/{{photo['caption']}}/{{photo['id']}}" > Tags: </a><br>
+                <!-- view tags of photos-->
+                {% if photo['tags'] %}
+                    <ul>
+                        {% for tag in photo['tags'] %}
+                            <li>{{tag}}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <a>View comments to be added</a><br>
+            </div>
+            {% endfor %}
+
+        </ul>
+    {% endif %}
+    <div>
+        <a href='/upload'>Upload a photo</a>
+    </div>
+    <div>
+        <a href='/'>Home</a>
+    </div>
+</html>
+

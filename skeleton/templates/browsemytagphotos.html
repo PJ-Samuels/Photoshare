@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<body>
+    <div>
+        <h1>My Tagged Photos</h1>
+        {%if photos%}
+            <ul>
+            {% for photo in photos %}
+                <li>{{photo[2]}}<br>
+                <img src="data:image/jpeg;base64,{{ photo['image_data'] }}" alt="{{ photo['caption'] }}"></li>
+            {%endfor%}
+            </ul>
+        {%endif%}
+        
+    </div>
+    <div>
+        <a href = "/makealbum">back</a>
+</body>

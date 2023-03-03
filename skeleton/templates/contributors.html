@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<body>
+    <div>
+        <h1>Top Contributors</h1>
+        {%if top_contributors%}
+            <ul>
+            {%for contributor in top_contributors%}
+                <li><a >{{contributor}}</a></li>
+            {%endfor%}
+            </ul>
+        {%endif%}
+    </div>
+    <div>
+        <a href = '/'>Home</a>
+    </div>
+</body>

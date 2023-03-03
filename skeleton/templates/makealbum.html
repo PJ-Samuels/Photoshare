@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div>
+            <h1>Make an album!</h1>
+            <form method="post" action="{{ url_for('make_album') }}">
+                <label for="album_name">Enter Album Name</label>
+                <input type="album_name" name="album_name" /><br />
+                <input type="hidden" name="album_name" value="{{ album_name }}">
+                <input type="submit" value="Make Album" />
+            </form>
+        </div>
+        <div>
+            <h1> My Albums</h1>
+            {% if albums %}
+                <ul>
+                {% for album in albums %}
+                    <a href="{{ url_for('view_album', album_name=album) }}">{{album}}</a>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div>
+            <h1> My Photos by tag</h1>
+            <a href = "/mytags">browse tags here</a>
+        <div>
+            <a href = "/">Home</a>
+        </div>
+    </body>
+</html>

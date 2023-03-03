@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<body>
+    <div>
+        {%if result%}
+            <a>NO users comments found</a>
+        {%endif%}
+        {%if users%}
+            <h1>Users who made this comment</h1>
+            <ul>
+            {%for user in users%}
+                <a >{{user}}</a>
+            {%endfor%}
+            </ul>
+        {%endif%}
+        <h1>Search Comments</h1>
+        <form method="post" action="{{ url_for('search_comments') }}">
+            <label for="search">Enter Search Term</label>
+            <input type="text" name="search" /><br />
+            <input type="submit" value="Search" />
+    </div>
+    <div>
+        <a href = "/">Home</a>
+    </div>
+</body>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<body>
+    <html>
+        <head>
+            <title>Tag Search</title>
+        </head>
+        <body>
+            <div class="title">
+                <h1>Tag Search</h1>
+            </div>
+            <form method="post" action="{{ url_for('tag_search') }}">
+                <label for="tag">Enter Tag Here</label>
+                <input type="text" name="tag" required='true' /><br />
+                <input type="submit" value="Search" />
+            </form>
+            <div>
+                <h1>Popular Tags</h1>
+                <ul>
+                {% for tag in populartags %}
+                    <li><a href = '/popular_tags/{{tag}}'>{{tag}}</a></li>
+                {% endfor %}
+            </div>
+            <div>
+                <h1>Photos with Tag</h1>
+                <ul>
+                {% for photo in photos %}
+                    <li>{{photo[2]}}<br>
+                        <img src="data:image/jpeg;base64,{{ photo['image_data'] }}" alt="{{ photo['caption'] }}">
+                        <div class="caption">{{ photo['caption'] }}</div></li>
+                    <a> Tags: </a><br>
+                    {% if photo['tags'] %}
+                    <ul>
+                        {% for tag in photo['tags'] %}
+                            <li>{{tag}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <a href = "/addComments/{{photo['caption']}}/{{ photo['id'] }}"> Comments:</a><br>
+                    {% if photo['comments'] %}
+                    <ul>
+                        {% for comment in photo['comments'] %}
+                            <li>{{comment}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <a href = "/">Home</a>
+            </div>
+        </body>
+    </html>
+</body>

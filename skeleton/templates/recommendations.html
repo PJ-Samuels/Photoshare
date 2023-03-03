@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<body>
+    <div>
+        <h1> Friend recommendations</h1>
+        <ul>
+        {% for friend in friends %}
+            <li>{{friend}}</li>
+        {% endfor %}
+
+    </div>
+    <div>
+        <h1> Posts You may also like</h1>
+        <ul>
+        {% for post in posts %}
+            <li>{{post[2]}}<br>
+            <img src="data:image/jpeg;base64,{{ post['image_data'] }}" alt="{{ post['caption'] }}"></li>
+            <a href = "/addLike/{{post['id']}}">Like Photo</a><br>
+            <a> Tags: </a><br>
+            {% if post['tags'] %}
+            <ul>
+                {% for tag in post['tags'] %}
+                    <li>{{tag}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <a href = "/addComments/{{post['caption']}}/{{ post['id'] }}"> Comments:</a><br>
+            {% if post['comments'] %}
+            <ul>
+                {% for comment in post['comments'] %}
+                    <li>{{comment}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div>
+        <a href = "/">Home</a>
+    </div>
+</body>    

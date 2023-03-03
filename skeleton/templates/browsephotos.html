@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div>
+            <h1>View Photos</h1>
+            <a href = "/tagSearch">View by Tag</a>
+            <ul>
+            {% for photo in photos %}
+                <li>{{photo[2]}}<br>
+                <img src="data:image/jpeg;base64,{{ photo['image_data'] }}" alt="{{ photo['caption'] }}"></li>
+                <a href = "/addLike/{{photo['id']}}">Like Photo</a>
+                {% if photo['total_likes'] %}
+                    <a>Number of likes: {{photo['total_likes']}}</a><br>
+                    <a>Users who have liked</a>
+                    {% if photo['users_liked'] %}
+                    <ul>
+                        {% for user in photo['users_liked'] %}
+                            <li>{{user}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <br>
+                {% endif %}
+                <a> Tags: </a><br>
+                {% if photo['tags'] %}
+                <ul>
+                    {% for tag in photo['tags'] %}
+                        <li>{{tag}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <a href = "/addComments/{{photo['caption']}}/{{ photo['id'] }}"> Comments:</a><br>
+                {% if photo['comments'] %}
+                <ul>
+                    {% for comment in photo['comments'] %}
+                        <li>{{comment}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <a href = "/">Home</a>
+    </body>
+</html>

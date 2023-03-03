@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<body>
+    <div>
+        <h1>My Tag options</h1>
+        {%if tags%}
+            <ul>
+            {%for tag in tags%}
+                <li><a href = "/browsemytaggedphotos/{{tag}}">{{tag}}</a></li>
+            {%endfor%}
+            </ul>
+        {%endif%}
+    </div>
+    <div>
+        <a href = "/makealbum">back</a>
+    </div>
+</body>
